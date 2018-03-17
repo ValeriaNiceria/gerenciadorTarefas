@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="<?= base_url('assets/img/task.ico')?>"> 
 
-    <title>Login - Gerenciador de tarefas</title>
+    <title>Cadastro usuário - Gerenciador de tarefas</title>
 
     <!-- Bootstrap core CSS -->
     <?= link_tag('assets/css/bootstrap.min.css')?>
@@ -15,22 +15,25 @@
     <form>
     <div class="modal-content">
         <div class="modal-header bg-dark">
-        <h5 class="modal-title text-white"><img src="<?= base_url('assets/img/lock.png')?>" class="mr-2">Acesso ao sistema</h5>
+        <h5 class="modal-title text-white"><img src="<?= base_url('assets/img/user.png')?>" class="mr-2">Cadastro</h5>
         </div>
         <div class="modal-body">
-            <label for="email" class="sr-only">Email</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Informe o email" required autofocus>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" class="form-control" placeholder="Informe o nome" required autofocus>
 
-            <label for="senha" class="sr-only">Senha</label>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+
+            <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" class="form-control mt-2" placeholder="Senha" required>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" type="submit">Logar <img src="<?= base_url('assets/img/login.png')?>"></button>
+            <button class="btn btn-primary" type="submit">Salvar</button>
+            <a href="<?= base_url('login')?>" class="btn btn-secondary" data-dismiss="modal">Fechar</a>
         </div>
     </div>
     </form>
     </div>
-    <p class="text-center">Não possui uma conta? <a href="<?= base_url('usuario')?>">Criar conta</a></p>
   </body>
 </html>
 
