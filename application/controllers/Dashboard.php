@@ -5,6 +5,12 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('base');
+		$dados['titulo'] = "Dashboard";
+		$dados['conteudo'] = "dashboard";
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('base', $dados);
+		$this->load->view('includes/html_footer');
 	}
 }
