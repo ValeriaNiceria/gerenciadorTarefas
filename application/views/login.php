@@ -31,6 +31,15 @@
     </form>
     </div>
     <p class="text-center">Não possui uma conta? <a href="<?= base_url('usuario')?>">Criar conta</a></p>
+
+    <!-- Notificação -->
+    <?php
+      $error = $this->session->flashdata('error');
+      $success = $this->session->flashdata('success');
+
+      echo isset($error) ? "<div class='alert alert-danger text-center modal-dialog'>" . $error . "</div>" : "";
+      echo isset($success) ? "<div class='alert alert-success text-center modal-dialog'>" . $success . "</div>" : "";
+    ?>
   </body>
 </html>
 

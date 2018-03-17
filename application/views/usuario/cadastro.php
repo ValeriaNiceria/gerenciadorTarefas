@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class="modal-dialog" role="document">
-    <form>
+    <form action="<?= base_url('usuario/adicionar')?>" method="post">
     <div class="modal-content">
         <div class="modal-header bg-dark">
         <h5 class="modal-title text-white"><img src="<?= base_url('assets/img/user.png')?>" class="mr-2">Cadastro</h5>
