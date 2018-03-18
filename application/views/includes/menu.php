@@ -4,7 +4,7 @@
     <li class="nav-item text-nowrap">
         <div class="row">
         <a class="nav-link mr-3" href="#"><span data-feather="user"></span>Perfil</a>
-        <a class="nav-link mr-3" href="#"><span data-feather="log-out"></span>Sair</a>
+        <a class="nav-link mr-3" href="<?= base_url('login/logout')?>" onclick="return confirm('Deseja deslogar?');"><span data-feather="log-out"></span>Sair</a>
         </div>
     </li>
     </ul>

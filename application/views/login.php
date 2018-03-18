@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class="modal-dialog" role="document">
-    <form>
+    <form action="login/logar" method="post">
     <div class="modal-content">
         <div class="modal-header bg-dark">
         <h5 class="modal-title text-white"><img src="<?= base_url('assets/img/lock.png')?>" class="mr-2">Acesso ao sistema</h5>
