@@ -34,4 +34,21 @@ class MY_Model extends CI_Model {
         return FALSE;
     }
 
+
+    public function getAll($tabela)
+    {
+        if (isset($tabela))
+        {
+            $query = $this->db->get($tabela);
+
+            if ($query->num_rows() > 0)
+            {
+                return $query->result_array();
+            } else
+            {
+                return NULL;
+            }
+        }
+        return FALSE;
+    }
 }

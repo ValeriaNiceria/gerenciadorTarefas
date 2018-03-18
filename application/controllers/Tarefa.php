@@ -11,6 +11,10 @@ class Tarefa extends CI_Controller {
 
     public function index()
     {
+    	$tabela = "tarefas";
+
+ 		$dados['tarefas'] = $this->Tarefa_model->getAll($tabela);
+
         $dados['titulo'] = "Minhas tarefas";
 		$dados['conteudo'] = "tarefa/lista";
 
