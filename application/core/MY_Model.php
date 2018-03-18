@@ -34,11 +34,12 @@ class MY_Model extends CI_Model {
         return FALSE;
     }
 
-
-    public function getAll($tabela)
+    /*Todos os registros de acordo com o usuario_id*/
+    public function getAll($usuario_id, $tabela)
     {
-        if (isset($tabela))
+        if (isset($usuario_id) && isset($tabela))
         {
+            $this->db->where('usuario_id', $usuario_id);
             $query = $this->db->get($tabela);
 
             if ($query->num_rows() > 0)
