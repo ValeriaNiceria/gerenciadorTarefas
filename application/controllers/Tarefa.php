@@ -7,6 +7,7 @@ class Tarefa extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Tarefa_model');
+		$this->load->helper('data');
 	}
 
     public function index()

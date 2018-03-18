@@ -43,14 +43,21 @@
                             <span class="badge badge-danger">Alta</span>
                         <?php endif; ?>
                     </td>
+                    
                     <td>
                         <?= ($tarefa['status']) ? 
                             "<span class='badge badge-success'>Concluída</span>" : 
                             "<span class='badge badge-primary'>Em Aberto</span>";
                         ?>
                     </td>
-                    <td><?= $tarefa['data_criacao'] ?></td>
-                    <td><?= $tarefa['data_termino'] ?></td>
+                    <td><?= data_exibir($tarefa['data_criacao']) ?></td>
+
+                    <td><?= ($tarefa['data_termino']) ?
+                            data_exibir($tarefa['data_termino']) : 
+                            "<span class='badge badge-secondary'>Ainda em aberto</span>";
+                        ?>
+                    </td>
+
                     <td>
                         <!-- Verifica se a tarefa está concluida-->
                         <?php if ($tarefa['status'] == 1) : ?>
