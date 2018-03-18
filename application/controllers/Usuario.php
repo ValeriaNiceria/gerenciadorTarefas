@@ -45,4 +45,21 @@ class Usuario extends CI_Controller {
         }
     }
 
+
+    public function perfil()
+    {
+        $usuario_id = $this->session->userdata('usuario_id');
+        $tabela = "usuarios";
+
+        $dados['usuario'] = $this->Usuario_model->getById($usuario_id, $tabela);
+
+        $dados['titulo'] = "Perfil";
+		$dados['conteudo'] = "usuario/perfil";
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('base', $dados);
+		$this->load->view('includes/html_footer');
+    }
+
 }
