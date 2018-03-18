@@ -5,7 +5,7 @@
     </div>
 
     <div class="form-group">
-        <label for="descricao">Título:</label>
+        <label for="descricao">Descrição:</label>
         <textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição da tarefa" required></textarea>
     </div>
 

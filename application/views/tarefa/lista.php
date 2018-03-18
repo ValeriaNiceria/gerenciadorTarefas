@@ -6,8 +6,22 @@
     $error = $this->session->flashdata('error');
     $success = $this->session->flashdata('success');
 
-    echo isset($error) ? "<div class='alert alert-danger text-center'>" . $error . "</div>" : "";
-    echo isset($success) ? "<div class='alert alert-success text-center'>" . $success . "</div>" : "";
+    echo isset($error) ?
+        "<div class='alert alert-danger alert-dismissible fade show text-center' role='alert'>
+          <strong>" . $error . "</strong>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+          </button>
+        </div>" : 
+        "";
+    echo isset($success) ?
+        "<div class='alert alert-success alert-dismissible fade show text-center' role='alert'>
+          <strong>" . $success . "</strong>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+          </button>
+        </div>" : 
+        "";
 ?>
 
 
@@ -43,7 +57,7 @@
                             <span class="badge badge-danger">Alta</span>
                         <?php endif; ?>
                     </td>
-                    
+
                     <td>
                         <?= ($tarefa['status']) ? 
                             "<span class='badge badge-success'>Concluída</span>" : 

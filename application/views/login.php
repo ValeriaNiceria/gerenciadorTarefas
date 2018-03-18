@@ -37,9 +37,16 @@
       $error = $this->session->flashdata('error');
       $success = $this->session->flashdata('success');
 
-      echo isset($error) ? "<div class='alert alert-danger text-center modal-dialog'>" . $error . "</div>" : "";
-      echo isset($success) ? "<div class='alert alert-success text-center modal-dialog'>" . $success . "</div>" : "";
+      echo isset($error) ?
+        "<div class='alert alert-danger text-center modal-dialog'>
+          <strong>" . $error . "</strong>
+        </div>" : 
+        "";
+      echo isset($success) ?
+        "<div class='alert alert-success text-center modal-dialog'>
+          <strong>" . $success . "</strong>
+        </div>" : 
+        "";
     ?>
   </body>
 </html>
-
