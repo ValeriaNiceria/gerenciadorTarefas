@@ -18,14 +18,20 @@
         <h5 class="modal-title text-white"><img src="<?= base_url('assets/img/user.png')?>" class="mr-2">Cadastro</h5>
         </div>
         <div class="modal-body">
+          <div class="form-group">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" class="form-control" placeholder="Informe o nome" required autofocus>
+          </div>
 
+          <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+          </div>
 
+          <div class="form-group">
             <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" class="form-control mt-2" placeholder="Senha" required>
+            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+          </div>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="submit">Salvar</button>

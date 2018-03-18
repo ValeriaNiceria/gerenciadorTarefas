@@ -1,5 +1,14 @@
 <!--Botão nova tarefa-->
-<a href="" class="btn btn-primary mb-3"><span data-feather="plus"></span>Nova tarefa</a>
+<a href="<?= base_url('tarefa/cadastro')?>" class="btn btn-primary mb-3"><span data-feather="plus"></span>Nova tarefa</a>
+
+<!-- Notificação -->
+<?php
+    $error = $this->session->flashdata('error');
+    $success = $this->session->flashdata('success');
+
+    echo isset($error) ? "<div class='alert alert-danger text-center'>" . $error . "</div>" : "";
+    echo isset($success) ? "<div class='alert alert-success text-center'>" . $success . "</div>" : "";
+?>
 
 <!-- Lista tarefas -->
 <table class="table">
