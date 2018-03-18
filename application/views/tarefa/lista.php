@@ -77,13 +77,13 @@
                         <?php if ($tarefa['status'] == 1) : ?>
 
                             <button class="btn btn-warning" title="Atualizar" disabled><span data-feather="edit"></span></button>
-                            <a href="" class="btn btn-danger" title="Excluir"><span data-feather="trash"></span></a>
+                            <a href="<?= base_url('tarefa/excluir/') . $tarefa['id'] ?>" class="btn btn-danger" onclick="return confirm('Deseja excluir está tarefa?');" title="Excluir"><span data-feather="trash"></span></a>
                             <button class="btn btn-info" title="Concluir" disabled><span data-feather="check"></span></button>
 
                         <?php else: ?>
 
                             <a href="" class="btn btn-warning" title="Atualizar"><span data-feather="edit"></span></a>
-                            <a href="" class="btn btn-danger" title="Excluir"><span data-feather="trash"></span></a>
+                            <a href="<?= base_url('tarefa/excluir/') . $tarefa['id'] ?>" class="btn btn-danger" onclick="return confirm('Deseja excluir está tarefa?');" title="Excluir"><span data-feather="trash"></span></a>
                             <a href="" class="btn btn-info" title="Concluir"><span data-feather="check"></span></a>
                         
                         <?php endif; ?>

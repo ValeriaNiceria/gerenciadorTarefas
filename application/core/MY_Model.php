@@ -52,4 +52,15 @@ class MY_Model extends CI_Model {
         }
         return FALSE;
     }
+
+
+    public function excluir($id, $tabela)
+    {
+        if (isset($id) && isset($tabela))
+        {
+            $this->db->where('id', $id);
+            return $this->db->delete($tabela);
+        }
+        return FALSE;
+    }
 }

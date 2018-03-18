@@ -71,4 +71,23 @@ class Tarefa extends CI_Controller {
 			redirect('tarefa');
 		}
 	}
+
+
+	/*Excluir tarefa do banco de dados*/
+	public function excluir()
+	{
+		$id = $this->uri->segment(3);
+
+		$tabela = "tarefas";
+
+		if ($this->Tarefa_model->excluir($id, $tabela))
+		{
+			$this->session->set_flashdata('success', 'Tarefa excluída com sucesso!');
+			redirect('tarefa');
+		} else
+		{
+			$this->session->set_flashdata('error', 'Não foi possível excluir a tarefa.');
+			redirect('tarefa');
+		}
+	}
 }
