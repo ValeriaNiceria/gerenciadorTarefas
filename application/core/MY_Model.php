@@ -40,6 +40,7 @@ class MY_Model extends CI_Model {
         if (isset($usuario_id) && isset($tabela))
         {
             $this->db->where('usuario_id', $usuario_id);
+            $this->db->order_by('id desc'); /*ordena as tarefas pelo ID*/
             $query = $this->db->get($tabela);
 
             if ($query->num_rows() > 0)

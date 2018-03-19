@@ -114,4 +114,53 @@ class Tarefa extends CI_Controller {
 			redirect('tarefa');
 		}
 	}
+
+
+	/*Atualizar tarefa*/
+	public function atualizar()
+	{
+		/*Preenche os campos do formulário*/
+		$id = $this->uri->segment(3);
+
+		$tabela = "tarefas";
+
+		$dados['tarefa'] = $this->Tarefa_model->getById($id, $tabela);
+
+
+		/*Carrega a página*/
+		$dados['titulo'] = "Atualizar tarefa";
+		$dados['conteudo'] = "tarefa/atualizar";
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('base', $dados);
+		$this->load->view('includes/html_footer');
+
+		/*Atualiza os dados da tarefa*/
+		if ($_POST)
+		{
+			$id = $this->input->post('id');
+			$titulo = $this->input->post('titulo');
+			$descricao = $this->input->post('descricao');
+			$prioridade = $this->input->post('prioridade');
+
+			$dados = array(
+				'titulo' => $titulo,
+				'descricao' => $descricao,
+				'prioridade'=> $prioridade
+			);
+
+			$tabela = "tarefas";
+
+			if ($this->Tarefa_model->atualizar($id, $tabela, $dados))
+			{
+				$this->session->set_flashdata('success', 'Tarefa atualizada com sucesso!');
+				redirect('tarefa');	
+			} else
+			{
+				$this->session->set_flashdata('error', 'Não foi possível atualizar a tarefa');
+				redirect('tarefa');
+			}
+		}
+	}
 }
