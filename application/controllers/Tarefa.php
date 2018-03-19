@@ -90,4 +90,28 @@ class Tarefa extends CI_Controller {
 			redirect('tarefa');
 		}
 	}
+
+
+	/*Concluir tarefa*/
+	public function concluir()
+	{
+		$id = $this->uri->segment(3);
+
+		$tabela = "tarefas";
+
+		$dados = array(
+			'status' => 1,
+			'data_termino' => date('Y-m-d')
+		);
+
+		if ($this->Tarefa_model->atualizar($id, $tabela, $dados))
+		{
+			$this->session->set_flashdata('success', 'Parabéns! Sua tarefa foi concluída com sucesso!');
+			redirect('tarefa');
+		} else
+		{
+			$this->session->set_flashdata('error', 'Não foi possível concluir a tarefa.');
+			redirect('tarefa');
+		}
+	}
 }

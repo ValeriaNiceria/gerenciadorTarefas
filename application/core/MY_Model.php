@@ -63,4 +63,15 @@ class MY_Model extends CI_Model {
         }
         return FALSE;
     }
+
+
+    public function atualizar($id, $tabela, $dados)
+    {
+        if (isset($id) && isset($tabela) && is_array($dados))
+        {
+            $this->db->where('id', $id);
+            return $this->db->update($tabela, $dados);
+        }
+        return FALSE;
+    }
 }
