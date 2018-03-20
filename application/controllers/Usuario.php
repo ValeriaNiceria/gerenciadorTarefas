@@ -62,4 +62,39 @@ class Usuario extends CI_Controller {
 		$this->load->view('includes/html_footer');
     }
 
+
+    /*Atualizar senha*/
+    public function atualizarSenha()
+    {
+        $id = $this->session->userdata('usuario_id');
+
+        $tabela = "usuarios";
+
+        $senhaAtual = md5($this->input->post('senhaAtual'));
+        $senhaNova = md5($this->input->post('senhaNova'));
+
+        $usuario = $this->Usuario_model->getById($id, $tabela);
+
+        if ($usuario['senha'] == $senhaAtual)
+        {
+            $dados = array(
+                'senha' => $senhaNova
+            );
+
+            if ( $this->Usuario_model->atualizar($id, $tabela, $dados))
+            {
+                $this->session->set_flashdata('success', 'Senha atualizada com sucesso!');
+                redirect('usuario/perfil');
+            } else
+            {
+                $this->session->set_flashdata('error', 'Não foi possível atualizar a senha');
+                redirect('usuario/perfil');
+            }
+
+        } else
+        {
+            $this->session->set_flashdata('error', 'Senha atual não é a mesma cadastrada');
+            redirect('usuario/perfil');
+        }
+    }
 }
