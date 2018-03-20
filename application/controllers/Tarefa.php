@@ -163,4 +163,24 @@ class Tarefa extends CI_Controller {
 			}
 		}
 	}
+
+
+
+	public function filtro()
+	{
+		$usuario_id = $this->session->userdata('usuario_id');
+		$filtro = $this->input->post('filtro');
+		$tabela = "tarefas";
+
+		$dados['tarefas'] = $this->Tarefa_model->filtro($usuario_id, $filtro, $tabela);	
+
+
+		$dados['titulo'] = "Minhas tarefas";
+		$dados['conteudo'] = "tarefa/lista";
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('base', $dados);
+		$this->load->view('includes/html_footer');
+	}
 }

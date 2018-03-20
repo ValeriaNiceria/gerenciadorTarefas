@@ -1,5 +1,25 @@
 <!--Botão nova tarefa-->
-<a href="<?= base_url('tarefa/cadastro')?>" class="btn btn-primary mb-3"><span data-feather="plus"></span>Nova tarefa</a>
+<div class="col-md-12">
+   <div class="row">
+        <div class="col-md-2">
+            <a href="<?= base_url('tarefa/cadastro')?>" class="btn btn-primary btn-block mb-3"><span data-feather="plus"></span>Nova tarefa</a>
+        </div>
+        
+        <div class="col-md-10">
+            <form action="<?= base_url('tarefa/filtro')?>" method="post">
+                <div class="btn-group col-md-12" role="group" aria-label="Basic example">
+                    <select name="filtro" id="filtro" class="custom-select">
+                        <option value="" selected disabled>Filtrar tarefas...</option>
+                        <option value="0">Em aberto</option>
+                        <option value="1">Concluídas</option>
+                    </select>
+                    <button type="submit" class="btn btn-info btn-block col-md-2"><span data-feather="search" class="mr-2"></span>Filtrar</button>
+                </div>
+            </form>
+        </div>        
+        </div>
+    </div>
+</div>
 
 <!-- Notificação -->
 <?php
