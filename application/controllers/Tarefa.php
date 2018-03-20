@@ -165,17 +165,71 @@ class Tarefa extends CI_Controller {
 	}
 
 
-
+	/*Filtrar lista de tarefas*/
 	public function filtro()
 	{
-		$usuario_id = $this->session->userdata('usuario_id');
 		$filtro = $this->input->post('filtro');
+
+		$usuario_id = $this->session->userdata('usuario_id');
+		$tabela = "tarefas";
+		
+		if ($filtro)
+		{
+			$filtro = 1;
+
+			$dados['tarefas'] = ($this->Tarefa_model->filtro($usuario_id, $filtro, $tabela));
+
+			$dados['titulo'] = "Tarefas concluídas";
+			$dados['conteudo'] = "tarefa/lista";
+		} else
+		{
+
+			$filtro = 0;
+
+			$dados['tarefas'] = ($this->Tarefa_model->filtro($usuario_id, $filtro, $tabela));
+
+			$dados['titulo'] = "Tarefas em aberto";
+			$dados['conteudo'] = "tarefa/lista";
+		}
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('base', $dados);
+		$this->load->view('includes/html_footer');
+	}
+
+
+	/*Lista tarefas em aberto*/
+	public function lista_aberto()
+	{
+		$usuario_id = $this->session->userdata('usuario_id');
 		$tabela = "tarefas";
 
-		$dados['tarefas'] = $this->Tarefa_model->filtro($usuario_id, $filtro, $tabela);	
+		$filtro = 0;
+
+		$dados['tarefas'] = ($this->Tarefa_model->filtro($usuario_id, $filtro, $tabela));
+
+		$dados['titulo'] = "Tarefas em aberto";
+		$dados['conteudo'] = "tarefa/lista";
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('base', $dados);
+		$this->load->view('includes/html_footer');
+	}
 
 
-		$dados['titulo'] = "Minhas tarefas";
+	/*Lista tarefas concluídas*/
+	public function lista_concluido()
+	{
+		$usuario_id = $this->session->userdata('usuario_id');
+		$tabela = "tarefas";
+
+		$filtro = 1;
+
+		$dados['tarefas'] = ($this->Tarefa_model->filtro($usuario_id, $filtro, $tabela));
+
+		$dados['titulo'] = "Tarefas concluídas";
 		$dados['conteudo'] = "tarefa/lista";
 
 		$this->load->view('includes/html_header');
