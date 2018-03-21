@@ -1,5 +1,5 @@
 <ul class="list-group">
-  <li class="list-group-item list-group-item-action list-group-item-warning">
+  <li class="list-group-item list-group-item-action list-group-item-info">
     <h5><?= $tarefa['titulo']?></h5>
   </li>
 

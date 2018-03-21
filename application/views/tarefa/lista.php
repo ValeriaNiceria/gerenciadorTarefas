@@ -65,7 +65,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <a href="<?= base_url('tarefa/ver/') . $tarefa['id'] ?>"><?= $tarefa['titulo'] ?></a>
+                        <a href="<?= base_url('tarefa/ver/') . $tarefa['id'] ?>"><?= character_limiter ($tarefa['titulo'], 12); ?></a>
                     </td>
 
                     <td>
