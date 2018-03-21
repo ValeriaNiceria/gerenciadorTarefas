@@ -13,6 +13,6 @@
 
 ![alt text](https://raw.githubusercontent.com/ValeriaNiceria/gerenciadorTarefas/60f9f038876de7f043db2f89cfc1a86f17b84132/assets/img/paginas/dashboard.png)
 
-![alt text](https://raw.githubusercontent.com/ValeriaNiceria/gerenciadorTarefas/60f9f038876de7f043db2f89cfc1a86f17b84132/assets/img/paginas/minhas%20tarefas.png)
+![alt text](https://raw.githubusercontent.com/ValeriaNiceria/gerenciadorTarefas/master/assets/img/paginas/minhas%20tarefas.png)
 
 ![alt text](https://raw.githubusercontent.com/ValeriaNiceria/gerenciadorTarefas/60f9f038876de7f043db2f89cfc1a86f17b84132/assets/img/paginas/perfil.png)
