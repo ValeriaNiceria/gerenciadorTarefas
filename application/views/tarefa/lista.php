@@ -54,7 +54,6 @@
         <thead class="thead-dark">
             <tr>
                 <th>Título</th>
-                <th>Descrição</th>
                 <th>Prioridade</th>
                 <th>Status</th>
                 <th>Criada em</th>
@@ -65,8 +64,9 @@
         <?php foreach ($tarefas as $tarefa) : ?>
             <tbody>
                 <tr>
-                    <td><?= $tarefa['titulo'] ?></td>
-                    <td><?= $tarefa['descricao'] ?></td>
+                    <td>
+                        <a href="<?= base_url('tarefa/ver/') . $tarefa['id'] ?>"><?= $tarefa['titulo'] ?></a>
+                    </td>
 
                     <td>
                         <?php if ($tarefa['prioridade'] == 1) : ?>

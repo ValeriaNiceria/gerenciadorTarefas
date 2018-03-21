@@ -265,4 +265,22 @@ class Tarefa extends CI_Controller {
 		$this->load->view('base', $dados);
 		$this->load->view('includes/html_footer');
 	}
+
+
+	/*Ver detalhes da tarefa*/
+	public function ver()
+	{
+		$id = $this->uri->segment(3);
+		$tabela = "tarefas";
+
+		$dados['tarefa'] = $this->Tarefa_model->getById($id, $tabela);
+
+		$dados['titulo'] = "Detalhes Tarefa";
+		$dados['conteudo'] = "tarefa/ver";
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('base', $dados);
+		$this->load->view('includes/html_footer');
+	}
 }
