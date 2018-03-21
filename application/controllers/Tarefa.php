@@ -10,8 +10,20 @@ class Tarefa extends CI_Controller {
 		$this->load->helper('data');
 	}
 
+
+	public function verificar_sessao()
+	{
+		if (!$this->session->userdata('logado'))
+		{
+			redirect('login');
+		}
+	}
+
+
     public function index()
     {
+    	$this->verificar_sessao();
+
     	$usuario_id = $this->session->userdata('usuario_id');
     	$tabela = "tarefas";
     	/*registros do banco de dados*/
@@ -30,6 +42,8 @@ class Tarefa extends CI_Controller {
 	/*Formulário cadastro de tarefas*/
 	public function cadastro()
 	{
+		$this->verificar_sessao();
+
 		$dados['titulo'] = "Adicionar tarefa";
 		$dados['conteudo'] = "tarefa/cadastro";
 
@@ -43,6 +57,8 @@ class Tarefa extends CI_Controller {
 	/*Adicionar tabela no banco de dados*/
 	public function adicionar()
 	{
+		$this->verificar_sessao();
+
 		$titulo = $this->input->post('titulo');
 		$descricao = $this->input->post('descricao');
 		$prioridade = $this->input->post('prioridade');
@@ -76,6 +92,8 @@ class Tarefa extends CI_Controller {
 	/*Excluir tarefa do banco de dados*/
 	public function excluir()
 	{
+		$this->verificar_sessao();
+
 		$id = $this->uri->segment(3);
 
 		$tabela = "tarefas";
@@ -95,6 +113,8 @@ class Tarefa extends CI_Controller {
 	/*Concluir tarefa*/
 	public function concluir()
 	{
+		$this->verificar_sessao();
+
 		$id = $this->uri->segment(3);
 
 		$tabela = "tarefas";
@@ -119,6 +139,8 @@ class Tarefa extends CI_Controller {
 	/*Atualizar tarefa*/
 	public function atualizar()
 	{
+		$this->verificar_sessao();
+
 		/*Preenche os campos do formulário*/
 		$id = $this->uri->segment(3);
 
@@ -168,6 +190,8 @@ class Tarefa extends CI_Controller {
 	/*Filtrar lista de tarefas*/
 	public function filtro()
 	{
+		$this->verificar_sessao();
+
 		$filtro = $this->input->post('filtro');
 
 		$usuario_id = $this->session->userdata('usuario_id');
@@ -202,6 +226,8 @@ class Tarefa extends CI_Controller {
 	/*Lista tarefas em aberto*/
 	public function lista_aberto()
 	{
+		$this->verificar_sessao();
+
 		$usuario_id = $this->session->userdata('usuario_id');
 		$tabela = "tarefas";
 
@@ -222,6 +248,8 @@ class Tarefa extends CI_Controller {
 	/*Lista tarefas concluídas*/
 	public function lista_concluido()
 	{
+		$this->verificar_sessao();
+		
 		$usuario_id = $this->session->userdata('usuario_id');
 		$tabela = "tarefas";
 

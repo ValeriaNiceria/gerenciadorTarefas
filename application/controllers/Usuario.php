@@ -9,15 +9,28 @@ class Usuario extends CI_Controller {
         $this->load->model('Usuario_model');
     }
 
+
+    public function verificar_sessao()
+    {
+        if (!$this->session->userdata('logado'))
+        {
+            redirect('login');
+        }
+    }
+
+
     /*chama a página de cadastro*/
     public function index()
     {
         $this->load->view('usuario/cadastro');
     }
 
+
     /*Adiciona um novo usuário ao banco de dados*/
     public function adicionar()
     {
+        $this->verificar_sessao();
+
         /*pega os valores preenchidos no formulário e atribui as variáveis*/
         $nome = $this->input->post('nome');
         $email = $this->input->post('email');
@@ -48,6 +61,8 @@ class Usuario extends CI_Controller {
 
     public function perfil()
     {
+        $this->verificar_sessao();
+
         $usuario_id = $this->session->userdata('usuario_id');
         $tabela = "usuarios";
 
@@ -66,6 +81,8 @@ class Usuario extends CI_Controller {
     /*Atualizar senha*/
     public function atualizarSenha()
     {
+        $this->verificar_sessao();
+        
         $id = $this->session->userdata('usuario_id');
 
         $tabela = "usuarios";
