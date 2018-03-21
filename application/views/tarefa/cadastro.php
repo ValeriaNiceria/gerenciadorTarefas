@@ -19,5 +19,5 @@
         </select>
     </div>
 
-    <button type="submit" class="btn btn-success float-right">Salvar</button>
+    <button type="submit" class="btn btn-success float-right"><span data-feather="save"></span>Salvar</button>
 </form>

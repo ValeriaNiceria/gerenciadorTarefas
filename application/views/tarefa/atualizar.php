@@ -21,5 +21,5 @@
 
     <input type="hidden" name="id" value="<?= $tarefa['id']?>"/>
 
-    <button type="submit" class="btn btn-success float-right">Salvar atualização</button>
+    <button type="submit" class="btn btn-success float-right"><span data-feather="save"></span>Salvar atualização</button>
 </form>
