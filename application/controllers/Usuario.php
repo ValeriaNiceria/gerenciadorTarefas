@@ -29,8 +29,6 @@ class Usuario extends CI_Controller {
     /*Adiciona um novo usuário ao banco de dados*/
     public function adicionar()
     {
-        $this->verificar_sessao();
-
         /*pega os valores preenchidos no formulário e atribui as variáveis*/
         $nome = $this->input->post('nome');
         $email = $this->input->post('email');

@@ -31,6 +31,7 @@ class Login extends CI_Controller {
         {
             $dados = array(
                 'logado' => TRUE,
+                'nome' => $dadosLogin['nome'],
                 'usuario_id' => $dadosLogin['id']
             );
 

@@ -1,13 +1,25 @@
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="<?= base_url('dashboard')?>">Grenciador de tarefas</a>
-    <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-        <div class="row">
-        <a class="nav-link mr-3" href="<?= base_url('usuario/perfil')?>"><span data-feather="user"></span>Perfil</a>
-        <a class="nav-link mr-3" href="<?= base_url('login/logout')?>" onclick="return confirm('Deseja sair?');"><span data-feather="log-out"></span>Sair</a>
+
+    <div class="dropdown mr-3">
+        <div class="dropdown-toggle text-white" data-toggle="dropdown" href="#">
+            <span data-feather="user"></span> Olá, <?= $this->session->userdata['nome'] ?>
         </div>
-    </li>
-    </ul>
+        <ul class="dropdown-menu dropdown-user">
+            <li>
+                <a class="dropdown-item" href="<?= base_url('usuario/perfil')?>">
+                    <span data-feather="user"></span>
+                    Perfil
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="<?= base_url('login/logout')?>" onclick="return confirm('Deseja sair?');">
+                    <span data-feather="log-out"></span>
+                    Sair
+                </a>
+            </li>
+        </ul>
+    </div>
 </nav>
 
 <div class="container-fluid">
