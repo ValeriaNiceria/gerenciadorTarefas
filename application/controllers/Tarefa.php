@@ -24,11 +24,31 @@ class Tarefa extends CI_Controller {
     {
     	$this->verificar_sessao();
 
+    	$por_pagina = 4; /*Número de registros por página*/
+    	$inicio = ($this->uri->segment(2)) ? $this->uri->segment(2) : ''; /*Pega o segundo campo da url*/
+
     	$usuario_id = $this->session->userdata('usuario_id');
     	$tabela = "tarefas";
     	/*registros do banco de dados*/
- 		$dados['tarefas'] = $this->Tarefa_model->getAll($usuario_id, $tabela);
+ 		$dados['tarefas'] = $this->Tarefa_model->getAll($usuario_id, $tabela, $por_pagina, $inicio);
 
+ 		/*Dados para paginação*/
+ 		$this->load->library('pagination');
+
+ 		$config['base_url'] = base_url() . 'page/';
+		$config['per_page'] = $por_pagina;
+		$config['total_rows'] = $this->Tarefa_model->num_rows($usuario_id, $tabela);
+		$config['num_links'] = 5;
+		$config['first_url'] = 0;
+		$config['uri_segment'] = 2;
+
+		/*Inicializar a paginação*/
+		$this->pagination->initialize($config);
+
+		/*Criar links para paginação*/
+		$dados['paginacao'] = $this->pagination->create_links();
+
+		/*Carregando a página*/
         $dados['titulo'] = "Minhas tarefas";
 		$dados['conteudo'] = "tarefa/lista";
 

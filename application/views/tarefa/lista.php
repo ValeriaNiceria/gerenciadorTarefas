@@ -113,3 +113,9 @@
         <?php endforeach;?>
     </table>
 <?php endif; ?>
+
+
+<!--Paginação-->
+<div class="paginacao">
+    <?php echo isset($paginacao) ? $paginacao : ''; ?>
+</div>

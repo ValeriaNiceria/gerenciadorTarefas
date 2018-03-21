@@ -91,3 +91,24 @@ body {
 
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+
+/*Paginação*/
+
+.paginacao {
+  font-size: 20px;
+  margin-top: 15px;
+  float: right;
+  color: #000;
+}
+
+.paginacao a{
+    background-color: #e6f7ff;
+    color: ##33bbff;
+    margin: 5px;
+    padding: 15px;
+    font-size: 20px;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+}

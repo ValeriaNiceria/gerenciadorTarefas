@@ -34,26 +34,6 @@ class MY_Model extends CI_Model {
         return FALSE;
     }
 
-    /*Todos os registros de acordo com o usuario_id*/
-    public function getAll($usuario_id, $tabela)
-    {
-        if (isset($usuario_id) && isset($tabela))
-        {
-            $this->db->where('usuario_id', $usuario_id);
-            $this->db->order_by('id desc'); /*ordena as tarefas pelo ID*/
-            $query = $this->db->get($tabela);
-
-            if ($query->num_rows() > 0)
-            {
-                return $query->result_array();
-            } else
-            {
-                return NULL;
-            }
-        }
-        return FALSE;
-    }
-
 
     public function excluir($id, $tabela)
     {
