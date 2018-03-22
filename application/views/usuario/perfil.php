@@ -47,7 +47,8 @@
         <div class="modal-content">
             <div class="modal-header bg-dark">
                 <h5 class="modal-title text-white" id="senhaModalLabel">
-                    <span data-feather="lock" class="mr-2"></span>Atualizar senha
+                    <img src="<?= base_url('assets/img/lock.png')?>" class="mr-2">
+                    Atualizar senha
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -56,27 +57,24 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="senhaAtual">Senha atual:</label>
-                    <input type="password" name="senhaAtual" id="senhaAtual" placeholder="Informe a senha atual" class="form-control" onkeyup="checarSenha();"/>
+                    <input type="password" name="senhaAtual" id="senhaAtual" placeholder="Informe a senha atual" class="form-control" onkeyup="checarSenha();" autofocus/>
                 </div>
                 <div class="form-group">
                     <label for="senhaNova">Nova senha:</label>
                     <input type="password" name="senhaNova" id="senhaNova" placeholder="Informe a nova senha" class="form-control" onkeyup="checarSenha();"/>
+                    <!-- Mensagem de validação da senha-->
+                    <div class="row" id="divNova"></div>
                 </div>
                 <div class="form-group">
                     <label for="senhaConfirma">Confirmar Senha</label>
                     <input type="password" name="senhaConfirma" id="senhaConfirma" placeholder="Confirmar nova senha" class="form-control" onkeyup="checarSenha();"/>
-                </div>
-
-                <!-- Mensagem de validação da senha-->
-                <div class="row">
-                    <strong>
-                        <div id="divcheck"></div>
-                    </strong>
+                    <!-- Mensagem de validação da senha-->
+                    <div class="row" id="divConfirma"></div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="submit" id="enviarSenha" class="btn btn-primary" disabled>Salvar alteração</button>
+                <button type="submit" id="enviarSenha" class="btn btn-success" disabled>Salvar alteração</button>
             </div>
         </div>
     </form>
@@ -101,15 +99,40 @@
 
         if (senhaNova == senhaAtual)
         {
-            $("#divcheck").html("<span class='text-danger'>A senha informada é a mesma do campo da senha atual!</span>");
+            $("#divNova").html("<span class='badge badge-danger ml-3 mt-2'>A senha informada é a mesma do campo da senha atual</span>");
+            $("#senhaNova").css("border-color", "red");
+
             document.getElementById("enviarSenha").disabled = true;
+
         } else if (senhaNova == "" || senhaConfirma == "")
         {
-            $("#divcheck").html("<span class='text-danger'>Campo de senha vazio!</span>");
+            $("#divNova").html("<span class='badge badge-danger ml-3 mt-2'>Campo de senha vazio</span>");
+            $("#senhaNova").css("border-color", "red");
+
+            $("#divConfirma").html("<span class='badge badge-danger ml-3 mt-2'>Campo de senha vazio</span>");
+            $("#senhaConfirma").css("border-color", "red");
+
             document.getElementById("enviarSenha").disabled = true;
+
+        } else if (senhaNova != senhaConfirma) 
+        {
+            $("#divNova").html("<span class='badge badge-danger ml-3 mt-2'>Senhas diferentes</span>");
+            $("#senhaNova").css("border-color", "red");
+
+            $("#divConfirma").html("<span class='badge badge-danger ml-3 mt-2'>Senhas diferentes</span>");
+            $("#senhaConfirma").css("border-color", "red");
+
+            document.getElementById("enviarSenha").disabled = true;
+
         } else if (senhaNova == senhaConfirma)
         {
-            $("#divcheck").html("<span class='text-success'>Ok!</span>");
+            $("#divNova").html("");
+            $("#divConfirma").html("");
+
+            $("#senhaAtual").css("border-color", "green");
+            $("#senhaNova").css("border-color", "green");
+            $("#senhaConfirma").css("border-color", "green");
+
             document.getElementById("enviarSenha").disabled = false;
         }
     }
