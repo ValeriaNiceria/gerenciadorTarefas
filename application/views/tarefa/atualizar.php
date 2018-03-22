@@ -1,42 +1,34 @@
 <form action="<?= base_url('tarefa/atualizar')?>" method="post" class="needs-validation" novalidate>
 
-    <div class="form-row">
-      <div class="col-md-12 mb-3">
-        <label for="titulo">Título:</label>
-         <input type="text" class="form-control" id="titulo" name="titulo" value="<?= $tarefa['titulo']?>" placeholder="Título da tarefa" autofocus required/>
+  <div class="form-group">
+      <label for="titulo">Título:</label>
+      <input type="text" class="form-control" id="titulo" name="titulo" value="<?= $tarefa['titulo']?>" placeholder="Título da tarefa" autofocus/>
 
-        <div class="invalid-tooltip">
-          Informe um título para tarefa.
-        </div>
-
+      <div id="validacao-titulo" class="validacao badge badge-danger">
+        Por favor, informe um título para tarefa.
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="col-md-12 mb-3">
-        <label for="descricao">Descrição:</label>
-        <textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição da tarefa" required><?= $tarefa['descricao']?></textarea>
-        
-        <div class="invalid-tooltip">
-          Informe uma descrição para tarefa.
-        </div>
-
+    <div class="form-group">
+      <label for="descricao">Descrição:</label>
+      <textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição da tarefa" required><?= $tarefa['descricao']?></textarea>
+      
+      <div id="validacao-descricao" class="validacao badge badge-danger">
+        Por favor, informe uma descrição para tarefa.
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="col-md-12 mb-3">
-        <label for="prioridade">Prioridade:</label>
-        <select name="prioridade" id="prioridade" class="custom-select" required>
-            <option value="" selected disabled>Escolher...</option>
-            <option value="1" <?= ($tarefa['prioridade'] == 1) ? "selected" : "";?>>Baixa</option>
-            <option value="2" <?= ($tarefa['prioridade'] == 2) ? "selected" : "";?>>Normal</option>
-            <option value="3" <?= ($tarefa['prioridade'] == 3) ? "selected" : "";?>>Alta</option>
-        </select>
+    <div class="form-group">
+      <label for="prioridade">Prioridade:</label>
+      <select name="prioridade" id="prioridade" class="custom-select">
+        <option value="" selected disabled>Escolher...</option>
+        <option value="1" <?= ($tarefa['prioridade'] == 1) ? "selected" : "";?>>Baixa</option>
+        <option value="2" <?= ($tarefa['prioridade'] == 2) ? "selected" : "";?>>Normal</option>
+        <option value="3" <?= ($tarefa['prioridade'] == 3) ? "selected" : "";?>>Alta</option>
+      </select>
 
-        <div class="invalid-tooltip">
-          Selecione um nível de prioridade.
-        </div>
+      <div id="validacao-prioridade" class="validacao badge badge-danger">
+        Por favor, selecione um nível de prioridade.
       </div>  
     </div>
 
@@ -45,23 +37,67 @@
     <button type="submit" class="btn btn-success float-right"><span data-feather="save"></span>Salvar</button>
 </form>
 
+<!-- Validação dos campos -->
+<script src="<?=base_url('assets/js/jquery-3.2.1.slim.min.js')?>"></script>
 <script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
+  $(document).ready(function(){
+    $("#titulo").keyup(checar);
+    $("#descricao").keyup(checar);
+    $("#prioridade").keyup(checar);
+  });
+
+
+  $("button").click(function(){
+    var titulo = $("#titulo").val();
+    var descricao = $("#descricao").val();
+    var prioridade = $("#prioridade").val();
+
+    if (titulo == "") {
+      $("#titulo").focus();
+      $("#titulo").css("border-color", "red");
+      $("#validacao-titulo").show(); 
+      return false;
+    }
+
+    if (descricao == "") {
+      $("#descricao").focus();
+      $("#descricao").css("border-color", "red");
+      $("#validacao-descricao").show(); 
+      return false;
+    }
+
+    if (!prioridade) {
+      $("#prioridade").focus();
+      $("#prioridade").css("border-color", "red");
+      $("#validacao-prioridade").show(); 
+      return false;
+    }
+  });
+
+
+
+  function checar() {
+    var titulo = $("#titulo").val();
+    var descricao = $("#descricao").val();
+    var prioridade = $("#prioridade").val();
+
+    if (titulo != "") {
+      $("#titulo").css("border-color", "green");
+      $("#titulo").css("color", "green");
+      $("#validacao-titulo").hide(); 
+    }
+
+    if (descricao != "") {
+      $("#descricao").css("border-color", "green");
+      $("#descricao").css("color", "green");
+      $("#validacao-descricao").hide(); 
+    }
+
+    if (prioridade) {
+      $("#prioridade").css("border-color", "green");
+      $("#titulo").css("color", "green");
+      $("#validacao-prioridade").hide(); 
+    }
+  }
+
 </script>

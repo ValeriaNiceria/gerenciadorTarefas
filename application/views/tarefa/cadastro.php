@@ -39,7 +39,7 @@
 
 
 <!-- Validação dos campos -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="<?=base_url('assets/js/jquery-3.2.1.slim.min.js')?>"></script>
 <script>
   $(document).ready(function(){
     $("#titulo").keyup(checar);
@@ -90,11 +90,13 @@
 
     if (descricao != "") {
       $("#descricao").css("border-color", "green");
+      $("#descricao").css("color", "green");
       $("#validacao-descricao").hide(); 
     }
 
     if (prioridade) {
       $("#prioridade").css("border-color", "green");
+      $("#titulo").css("color", "green");
       $("#validacao-prioridade").hide(); 
     }
   }
