@@ -40,5 +40,17 @@
     </div>
     </form>
     </div>
+
+
+    <!-- Notificação -->
+    <?php
+      $error = $this->session->flashdata('error');
+
+      echo isset($error) ?
+        "<div class='alert alert-danger text-center modal-dialog'>
+          <strong>" . $error . "</strong>
+        </div>" : 
+        "";
+    ?>
   </body>
 </html>

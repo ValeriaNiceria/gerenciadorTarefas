@@ -29,30 +29,43 @@ class Usuario extends CI_Controller {
     /*Adiciona um novo usuário ao banco de dados*/
     public function adicionar()
     {
-        /*pega os valores preenchidos no formulário e atribui as variáveis*/
-        $nome = $this->input->post('nome');
-        $email = $this->input->post('email');
-        $senha = md5($this->input->post('senha'));
+        /*validando o email - verifica se o email já está cadastrado*/
+        $this->load->library('form_validation');
 
-        /*Array dos dados que serão adicionados na tabela*/
-        $dados = array(
-            'nome' => $nome,
-            'email' => $email,
-            'senha' => $senha
-        );
+        $this->form_validation->set_rules('email', 'Email', 'is_unique[usuarios.email]');
 
-        /*tabela do banco*/
-        $tabela = "usuarios";
-
-        /*verifica se o usuário foi adicionado*/
-        if ($this->Usuario_model->adicionar($tabela, $dados))
+        if (!$this->form_validation->run())
         {
-            $this->session->set_flashdata('success', 'Cadastro realizado com sucesso!');
-            redirect('login');
+            $this->session->set_flashdata('error', 'O email informado já está cadastrado!');
+            redirect('usuario');
         } else
         {
-            $this->session->set_flashdata('error', 'Não foi possível realizar o cadastro.');
-            redirect('login');  
+            /*pega os valores preenchidos no formulário e atribui as variáveis*/
+            $nome = $this->input->post('nome');
+            $email = $this->input->post('email');
+            $senha = md5($this->input->post('senha'));
+
+
+            /*Array dos dados que serão adicionados na tabela*/
+            $dados = array(
+                'nome' => $nome,
+                'email' => $email,
+                'senha' => $senha
+            );
+
+            /*tabela do banco*/
+            $tabela = "usuarios";
+
+            /*verifica se o usuário foi adicionado*/
+            if ($this->Usuario_model->adicionar($tabela, $dados))
+            {
+                $this->session->set_flashdata('success', 'Cadastro realizado com sucesso!');
+                redirect('login');
+            } else
+            {
+                $this->session->set_flashdata('error', 'Não foi possível realizar o cadastro.');
+                redirect('login');  
+            }
         }
     }
 
