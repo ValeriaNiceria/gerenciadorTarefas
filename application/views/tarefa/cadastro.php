@@ -2,7 +2,7 @@
 
     <div class="form-group">
       <label for="titulo">Título:</label>
-      <input type="text" class="form-control" id="titulo" name="titulo" onkeyup="checar();"  placeholder="Título da tarefa" autofocus/>
+      <input type="text" class="form-control" id="titulo" name="titulo" onkeyup="checar();" placeholder="Título da tarefa" autofocus/>
 
       <div id="validacao-titulo" class="validacao badge badge-danger">
         Por favor, informe um título para tarefa.

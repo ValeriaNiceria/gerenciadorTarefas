@@ -1,0 +1,9 @@
+/*Ocultando o campo de validação*/
+.validacao {
+  text-align: left;
+
+  margin-top: 5px;
+  padding: 10px;
+  
+  display: none;
+}

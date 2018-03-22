@@ -12,6 +12,8 @@
 
     <!-- Custom styles for this template -->
     <?= link_tag('assets/css/dashboard.css')?>
+
+    <?= link_tag('assets/css/style.css')?>
   </head>
 
   <body>
