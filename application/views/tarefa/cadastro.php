@@ -84,19 +84,16 @@
 
     if (titulo != "") {
       $("#titulo").css("border-color", "green");
-      $("#titulo").css("color", "green");
       $("#validacao-titulo").hide(); 
     }
 
     if (descricao != "") {
       $("#descricao").css("border-color", "green");
-      $("#descricao").css("color", "green");
       $("#validacao-descricao").hide(); 
     }
 
     if (prioridade) {
       $("#prioridade").css("border-color", "green");
-      $("#titulo").css("color", "green");
       $("#validacao-prioridade").hide(); 
     }
   }
