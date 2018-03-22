@@ -2,25 +2,25 @@
 
     <div class="form-group">
       <label for="titulo">Título:</label>
-      <input type="text" class="form-control" id="titulo" name="titulo" onkeyup="validacaoCadastro()"  placeholder="Título da tarefa" autofocus/>
+      <input type="text" class="form-control" id="titulo" name="titulo" onkeyup="checar();"  placeholder="Título da tarefa" autofocus/>
 
       <div id="validacao-titulo" class="validacao badge badge-danger">
-        Informe um título para tarefa.
+        Por favor, informe um título para tarefa.
       </div>
     </div>
 
     <div class="form-group">
       <label for="descricao">Descrição:</label>
-      <textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição da tarefa"></textarea>
+      <textarea class="form-control" id="descricao" name="descricao" onkeyup="checar();" placeholder="Descrição da tarefa"></textarea>
       
       <div id="validacao-descricao" class="validacao badge badge-danger">
-        Informe uma descrição para tarefa.
+        Por favor, informe uma descrição para tarefa.
       </div>
     </div>
 
     <div class="form-group">
       <label for="prioridade">Prioridade:</label>
-      <select name="prioridade" id="prioridade" class="custom-select" required>
+      <select name="prioridade" id="prioridade" class="custom-select">
           <option value="" selected disabled>Escolher...</option>
           <option value="1">Baixa</option>
           <option value="2">Normal</option>
@@ -28,41 +28,75 @@
       </select>
 
       <div id="validacao-prioridade" class="validacao badge badge-danger">
-        Selecione um nível de prioridade.
+        Por favor, selecione um nível de prioridade.
       </div>  
     </div>
 
-    <button type="submit" class="btn btn-success float-right" onclick="validacaoCadastro()"><div data-feather="save"></div>Salvar</button>
+    <span id="teste"></span>
+
+    <button type="submit" class="btn btn-success float-right"><div data-feather="save"></div>Salvar</button>
 </form>
 
 
 <!-- Validação dos campos -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-  $(document).ready(function() {
-    $("#titulo").keyup(validacaoCadastro); 
+  $(document).ready(function(){
+    $("#titulo").keyup(checar);
+    $("#descricao").keyup(checar);
+    $("#prioridade").keyup(checar);
   });
 
-  function validacaoCadastro() {
+
+  $("button").click(function(){
     var titulo = $("#titulo").val();
     var descricao = $("#descricao").val();
     var prioridade = $("#prioridade").val();
 
-    if (titulo == "")
-    {
+    if (titulo == "") {
+      $("#titulo").focus();
       $("#titulo").css("border-color", "red");
-      $("#titulo").css("background-color", "#FFC6C6");
-      $("#validacao-titulo").show();     
-    } else if (titulo != "") {
+      $("#validacao-titulo").show(); 
+      return false;
+    }
+
+    if (descricao == "") {
+      $("#descricao").focus();
+      $("#descricao").css("border-color", "red");
+      $("#validacao-descricao").show(); 
+      return false;
+    }
+
+    if (!prioridade) {
+      $("#prioridade").focus();
+      $("#prioridade").css("border-color", "red");
+      $("#validacao-prioridade").show(); 
+      return false;
+    }
+  });
+
+
+
+  function checar() {
+    var titulo = $("#titulo").val();
+    var descricao = $("#descricao").val();
+    var prioridade = $("#prioridade").val();
+
+    if (titulo != "") {
       $("#titulo").css("border-color", "green");
+      $("#titulo").css("color", "green");
       $("#validacao-titulo").hide(); 
     }
 
-    if (descricao == "")
-    {
-      $("#titulo").css("border-color", "red");
-      $("#titulo").css("background-color", "#FFC6C6");
-      $("#validacao-titulo").show();     
+    if (descricao != "") {
+      $("#descricao").css("border-color", "green");
+      $("#validacao-descricao").hide(); 
+    }
+
+    if (prioridade) {
+      $("#prioridade").css("border-color", "green");
+      $("#validacao-prioridade").hide(); 
     }
   }
-    
+
 </script>

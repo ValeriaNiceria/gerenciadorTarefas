@@ -26,7 +26,7 @@ class Usuario extends CI_Controller {
     }
 
 
-    /*Adiciona um novo usuário ao banco de dados*/
+    /*Adiciona um novo usuário no banco de dados*/
     public function adicionar()
     {
         /*validando o email - verifica se o email já está cadastrado*/
