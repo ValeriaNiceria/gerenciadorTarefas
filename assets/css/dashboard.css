@@ -112,3 +112,14 @@ body {
     border-radius: 5px;
     text-decoration: none;
 }
+
+/*Ocultando o campo de validação*/
+
+.validacao {
+  text-align: left;
+
+  margin-top: 5px;
+  padding: 10px;
+  
+  display: none;
+}
