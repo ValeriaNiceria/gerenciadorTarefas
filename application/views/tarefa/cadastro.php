@@ -34,7 +34,7 @@
 
     <span id="teste"></span>
 
-    <button type="submit" class="btn btn-success float-right"><div data-feather="save"></div>Salvar</button>
+    <button type="submit" class="btn btn-success float-right"><div data-feather="save" class="mr-2"></div>Salvar</button>
 </form>
 
 
@@ -52,6 +52,20 @@
     var titulo = $("#titulo").val();
     var descricao = $("#descricao").val();
     var prioridade = $("#prioridade").val();
+
+    if (titulo == "" && descricao == "" && !prioridade) {
+      $("#titulo").focus();
+      $("#titulo").css("border-color", "red");
+      $("#validacao-titulo").show();
+
+      $("#descricao").css("border-color", "red");
+      $("#validacao-descricao").show();
+      
+      $("#prioridade").css("border-color", "red");
+      $("#validacao-prioridade").show();
+
+      return false;
+    }
 
     if (titulo == "") {
       $("#titulo").focus();

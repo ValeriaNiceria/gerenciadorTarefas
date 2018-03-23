@@ -58,23 +58,25 @@
                 <div class="form-group">
                     <label for="senhaAtual">Senha atual:</label>
                     <input type="password" name="senhaAtual" id="senhaAtual" placeholder="Informe a senha atual" class="form-control" onkeyup="checarSenha();" autofocus/>
+                    <!-- Mensagem de validação da senha-->
+                    <div id ="validaAtual" class="validacao badge badge-danger"></div>
                 </div>
                 <div class="form-group">
                     <label for="senhaNova">Nova senha:</label>
                     <input type="password" name="senhaNova" id="senhaNova" placeholder="Informe a nova senha" class="form-control" onkeyup="checarSenha();"/>
                     <!-- Mensagem de validação da senha-->
-                    <div class="row" id="divNova"></div>
+                    <div id ="validaNova" class="validacao badge badge-danger"></div>
                 </div>
                 <div class="form-group">
                     <label for="senhaConfirma">Confirmar Senha</label>
                     <input type="password" name="senhaConfirma" id="senhaConfirma" placeholder="Confirmar nova senha" class="form-control" onkeyup="checarSenha();"/>
                     <!-- Mensagem de validação da senha-->
-                    <div class="row" id="divConfirma"></div>
+                    <div id ="validaConfirma" class="validacao badge badge-danger"></div>
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="submit" class="btn btn-success" id = "enviarSenha" disabled>Salvar alteração</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="submit" id="enviarSenha" class="btn btn-success" disabled>Salvar alteração</button>
             </div>
         </div>
     </form>
@@ -90,7 +92,6 @@
         $("#senhaNova").keyup(checarSenha);
         $("#senhaConfirma").keyup(checarSenha); 
     });
-
     function checarSenha()
     {
         var senhaAtual = $("#senhaAtual").val();
@@ -99,40 +100,41 @@
 
         if (senhaNova == senhaAtual)
         {
-            $("#divNova").html("<span class='badge badge-danger ml-3 mt-2'>A senha informada é a mesma do campo da senha atual</span>");
+            $("#validaNova").show();
+            $("#validaNova").html("A senha informada é a mesma do campo da senha atual");
             $("#senhaNova").css("border-color", "red");
-
             document.getElementById("enviarSenha").disabled = true;
-
         } else if (senhaNova == "" || senhaConfirma == "")
         {
-            $("#divNova").html("<span class='badge badge-danger ml-3 mt-2'>Campo de senha vazio</span>");
+            $("#validaNova").show();
+            $("#validaNova").html("Campo de senha vazio");
             $("#senhaNova").css("border-color", "red");
 
-            $("#divConfirma").html("<span class='badge badge-danger ml-3 mt-2'>Campo de senha vazio</span>");
+            $("#validaConfirma").show();
+            $("#validaConfirma").html("Campo de senha vazio");
             $("#senhaConfirma").css("border-color", "red");
 
             document.getElementById("enviarSenha").disabled = true;
-
         } else if (senhaNova != senhaConfirma) 
         {
-            $("#divNova").html("<span class='badge badge-danger ml-3 mt-2'>Senhas diferentes</span>");
+            $("#validaNova").show();
+            $("#validaNova").html("Senhas diferentes");
             $("#senhaNova").css("border-color", "red");
 
-            $("#divConfirma").html("<span class='badge badge-danger ml-3 mt-2'>Senhas diferentes</span>");
+            $("#validaConfirma").show();
+            $("#validaConfirma").html("Senhas diferentes");
             $("#senhaConfirma").css("border-color", "red");
 
             document.getElementById("enviarSenha").disabled = true;
-
         } else if (senhaNova == senhaConfirma)
         {
-            $("#divNova").html("");
-            $("#divConfirma").html("");
+            $("#validaNova").hide();
+            $("#validaConfirma").hide();
 
             $("#senhaAtual").css("border-color", "green");
             $("#senhaNova").css("border-color", "green");
             $("#senhaConfirma").css("border-color", "green");
-
+            
             document.getElementById("enviarSenha").disabled = false;
         }
     }

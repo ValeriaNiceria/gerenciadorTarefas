@@ -124,6 +124,23 @@
       var emailFiltro = /^.+@.+\..{2,}$/;
       var emailInvalido = /[\(\)\<\>\,\;\:\\\/\"\[\]]/;
 
+      if(nome == "" && email == "" && senha == "") {
+        $("#nome").focus();
+        $("#nome").css("border-color", "red");
+        $("#validacao-nome").show();
+        $("#validacao-nome").html("Por favor, informe o nome.");
+
+        $("#senha").css("border-color", "red");
+        $("#validacao-senha").show();
+        $("#validacao-senha").html("Por favor, informe a senha.");
+
+        $("#email").css("border-color", "red");
+        $("#validacao-email").show();
+        $("#validacao-email").html("Por favor, informe o email.");
+
+        return false;
+      }
+      
       if (nome == "") {
         $("#nome").focus();
         $("#nome").css("border-color", "red");

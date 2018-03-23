@@ -34,7 +34,7 @@
 
     <input type="hidden" name="id" value="<?= $tarefa['id']?>"/>
 
-    <button type="submit" class="btn btn-success float-right"><span data-feather="save"></span>Salvar</button>
+    <button type="submit" class="btn btn-success float-right"><span data-feather="save" class="mr-2"></span>Salvar</button>
 </form>
 
 <!-- Validação dos campos -->
@@ -51,6 +51,20 @@
     var titulo = $("#titulo").val();
     var descricao = $("#descricao").val();
     var prioridade = $("#prioridade").val();
+
+    if (titulo == "" && descricao == "" && !prioridade) {
+      $("#titulo").focus();
+      $("#titulo").css("border-color", "red");
+      $("#validacao-titulo").show();
+
+      $("#descricao").css("border-color", "red");
+      $("#validacao-descricao").show();
+      
+      $("#prioridade").css("border-color", "red");
+      $("#validacao-prioridade").show();
+
+      return false;
+    }
 
     if (titulo == "") {
       $("#titulo").focus();
