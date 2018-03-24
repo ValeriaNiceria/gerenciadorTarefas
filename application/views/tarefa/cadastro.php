@@ -2,7 +2,7 @@
 
     <div class="form-group">
       <label for="titulo">Título:</label>
-      <input type="text" class="form-control" id="titulo" name="titulo" onkeyup="checar();" placeholder="Título da tarefa" autofocus/>
+      <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título da tarefa" autofocus/>
 
       <div id="validacao-titulo" class="validacao badge badge-danger">
         Por favor, informe um título para tarefa.
@@ -11,7 +11,7 @@
 
     <div class="form-group">
       <label for="descricao">Descrição:</label>
-      <textarea class="form-control" id="descricao" name="descricao" onkeyup="checar();" placeholder="Descrição da tarefa"></textarea>
+      <textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição da tarefa"></textarea>
       
       <div id="validacao-descricao" class="validacao badge badge-danger">
         Por favor, informe uma descrição para tarefa.

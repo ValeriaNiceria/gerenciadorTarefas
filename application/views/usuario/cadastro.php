@@ -22,7 +22,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" class="form-control" onkeyup="checar();" placeholder="Informe o nome" autofocus>
+            <input type="text" id="nome" name="nome" class="form-control" placeholder="Informe o nome" autofocus>
 
             <!--mensagem validação-->
             <div id="validacao-nome" class="validacao badge badge-danger"></div>
@@ -30,7 +30,7 @@
 
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" class="form-control" onkeyup="checar();" placeholder="Email" required>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
 
             <!--mensagem validação-->
             <div id="validacao-email" class="validacao badge badge-danger"></div>
@@ -38,7 +38,7 @@
 
           <div class="form-group">
             <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" class="form-control" onkeyup="checar();" placeholder="Senha" required>
+            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
 
             <!--mensagem validação-->
             <div id="validacao-senha" class="validacao badge badge-danger"></div>
