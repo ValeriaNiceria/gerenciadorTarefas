@@ -1,54 +1,53 @@
-<form action="<?= base_url('tarefa/adicionar')?>" method="post">
+<div class="form-group">
+  <label for="titulo">Título:</label>
+  <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título da tarefa" autofocus />
 
-    <div class="form-group">
-      <label for="titulo">Título:</label>
-      <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título da tarefa" autofocus/>
+  <div id="validacao-titulo" class="validacao badge badge-danger">
+    Por favor, informe um título para tarefa.
+  </div>
+</div>
 
-      <div id="validacao-titulo" class="validacao badge badge-danger">
-        Por favor, informe um título para tarefa.
-      </div>
-    </div>
+<div class="form-group">
+  <label for="descricao">Descrição:</label>
+  <textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição da tarefa"></textarea>
 
-    <div class="form-group">
-      <label for="descricao">Descrição:</label>
-      <textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição da tarefa"></textarea>
-      
-      <div id="validacao-descricao" class="validacao badge badge-danger">
-        Por favor, informe uma descrição para tarefa.
-      </div>
-    </div>
+  <div id="validacao-descricao" class="validacao badge badge-danger">
+    Por favor, informe uma descrição para tarefa.
+  </div>
+</div>
 
-    <div class="form-group">
-      <label for="prioridade">Prioridade:</label>
-      <select name="prioridade" id="prioridade" class="custom-select">
-          <option value="" selected disabled>Escolher...</option>
-          <option value="1">Baixa</option>
-          <option value="2">Normal</option>
-          <option value="3">Alta</option>
-      </select>
+<div class="form-group">
+  <label for="prioridade">Prioridade:</label>
+  <select name="prioridade" id="prioridade" class="custom-select">
+    <option value="" selected disabled>Escolher...</option>
+    <option value="1">Baixa</option>
+    <option value="2">Normal</option>
+    <option value="3">Alta</option>
+  </select>
 
-      <div id="validacao-prioridade" class="validacao badge badge-danger">
-        Por favor, selecione um nível de prioridade.
-      </div>  
-    </div>
+  <div id="validacao-prioridade" class="validacao badge badge-danger">
+    Por favor, selecione um nível de prioridade.
+  </div>
+</div>
 
-    <span id="teste"></span>
+<span id="teste"></span>
 
-    <button type="submit" class="btn btn-success float-right"><div data-feather="save" class="mr-2"></div>Salvar</button>
-</form>
+<button type="submit" class="btn btn-success float-right">
+  <div data-feather="save" class="mr-2"></div>Salvar
+</button>
 
 
 <!-- Validação dos campos -->
-<script src="<?=base_url('assets/js/jquery-3.2.1.slim.min.js')?>"></script>
+<script src="<?= base_url('assets/js/jquery-3.2.1.slim.min.js') ?>"></script>
 <script>
-  $(document).ready(function(){
+  $(document).ready(function() {
     $("#titulo").keyup(checar);
     $("#descricao").keyup(checar);
     $("#prioridade").keyup(checar);
   });
 
 
-  $("button").click(function(){
+  $("button").click(function() {
     var titulo = $("#titulo").val();
     var descricao = $("#descricao").val();
     var prioridade = $("#prioridade").val();
@@ -60,7 +59,7 @@
 
       $("#descricao").css("border-color", "red");
       $("#validacao-descricao").show();
-      
+
       $("#prioridade").css("border-color", "red");
       $("#validacao-prioridade").show();
 
@@ -70,23 +69,48 @@
     if (titulo == "") {
       $("#titulo").focus();
       $("#titulo").css("border-color", "red");
-      $("#validacao-titulo").show(); 
+      $("#validacao-titulo").show();
       return false;
     }
 
     if (descricao == "") {
       $("#descricao").focus();
       $("#descricao").css("border-color", "red");
-      $("#validacao-descricao").show(); 
+      $("#validacao-descricao").show();
       return false;
     }
 
     if (!prioridade) {
       $("#prioridade").focus();
       $("#prioridade").css("border-color", "red");
-      $("#validacao-prioridade").show(); 
+      $("#validacao-prioridade").show();
       return false;
     }
+
+    dados_form = {
+      titulo: titulo,
+      descricao: descricao,
+      prioridade: prioridade
+    }
+
+    console.log('dados_form', dados_form)
+
+
+    $.ajax({
+      url: 'adicionar',
+      method: "POST",
+      data: JSON.stringify({
+        titulo: titulo,
+        descricao: descricao,
+        prioridade: prioridade
+      }),
+      contentType: "application/json",
+      dataType: "json"
+    }).done((dados1) => {
+      console.log('dados1', dados1);
+    });
+
+
   });
 
 
@@ -98,18 +122,17 @@
 
     if (titulo != "") {
       $("#titulo").css("border-color", "green");
-      $("#validacao-titulo").hide(); 
+      $("#validacao-titulo").hide();
     }
 
     if (descricao != "") {
       $("#descricao").css("border-color", "green");
-      $("#validacao-descricao").hide(); 
+      $("#validacao-descricao").hide();
     }
 
     if (prioridade) {
       $("#prioridade").css("border-color", "green");
-      $("#validacao-prioridade").hide(); 
+      $("#validacao-prioridade").hide();
     }
   }
-
 </script>

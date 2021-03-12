@@ -79,9 +79,11 @@ class Tarefa extends CI_Controller {
 	{
 		$this->verificar_sessao();
 
-		$titulo = $this->input->post('titulo');
-		$descricao = $this->input->post('descricao');
-		$prioridade = $this->input->post('prioridade');
+		$inputs = json_decode(file_get_contents("php://input"));
+
+		$titulo = $inputs->titulo;
+		$descricao = $inputs->descricao;
+		$prioridade = $inputs->prioridade;
 		$status = 0;
 		$data_criacao = date('Y-m-d');
 		$usuario_id = $this->session->userdata('usuario_id');
@@ -95,17 +97,11 @@ class Tarefa extends CI_Controller {
 			'usuario_id' => $usuario_id
 		);
 
-		$tabela = "tarefas";
+		
 
-		if ($this->Tarefa_model->adicionar($tabela, $dados))
-		{
-			$this->session->set_flashdata('success', 'Tarefa adicionada com sucesso!');
-			redirect('tarefa');
-		} else
-		{
-			$this->session->set_flashdata('error', 'Não foi possível adicionar a tarefa.');
-			redirect('tarefa');
-		}
+		echo json_encode($dados);
+
+	
 	}
 
 

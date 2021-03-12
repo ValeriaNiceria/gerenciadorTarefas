@@ -15,6 +15,8 @@ class Tarefa_model extends MY_Model {
             $this->db->order_by('id desc'); /*ordena as tarefas pelo ID*/
             $query = $this->db->get($tabela);
 
+            
+
             if ($query->num_rows() > 0)
             {
                 return $query->result_array();
